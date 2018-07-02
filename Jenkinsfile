@@ -1,12 +1,14 @@
 pipeline {
 
+    agent any
+
     stages {
     
         stage('Download new Version') {
         
             steps {
             
-                wget -P /opt/Jenkins/seleniumHub/ $VersionDownloadURL
+                sh 'wget -P /opt/Jenkins/seleniumHub/ $VersionDownloadURL'
             
             }        
         
@@ -14,19 +16,19 @@ pipeline {
         
         stage('Remove currect version') {
         
-            echo 'removing current version'
+            sh 'echo "removing current version"'
         
         }        
         
         stage('Deploy new version') {
         
-            echo 'Deployinf new version'
+            sh 'echo "Deployinf new version"'
         
         }
         
         stage('Test') {
         
-            echo 'testing new version'
+            sh 'echo "testing new version"'
         
         }
     
