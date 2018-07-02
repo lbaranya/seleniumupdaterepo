@@ -40,7 +40,10 @@ pipeline {
         
             steps {
                 sh 'echo "testing new version"'
-                if (sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL') {
+                sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL > commandResult'
+                String statusCode = readFile('commandResult').trim()
+                //sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL'
+                if (statusCode == '200') {
 
                     sh 'echo "Selenium Hub is Up"'
 
