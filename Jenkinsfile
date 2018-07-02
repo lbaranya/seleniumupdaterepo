@@ -40,14 +40,14 @@ pipeline {
         
             steps {
                 sh 'echo "testing new version"'
-                if curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL; then
+                if (sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL') {
 
                     sh 'echo "Selenium Hub is Up"'
 
-                else
+                } else {
                  
                     sh 'echo "Selenium Hub is down"'
-                fi 
+                }
             }
         
         }
