@@ -20,6 +20,8 @@ pipeline {
                 sh 'echo "removing current version"'
                 sh 'echo "Stoping Selenium HUB"'
                 sh 'curl --output /dev/null --silent --head --fail $SELENIUM_BASE_URL$SELENIUM_SHUTDOWN_URL'
+                sh 'echo "$OLD_VERSION_PATH$SELENIUM_JAR_NAME"'
+                sh 'echo "$SELENIUM_BASE_PATH$SELENIUM_JAR_NAME $OLD_VERSION_PATH$SELENIUM_JAR_NAME"'
                 sh 'rm $OLD_VERSION_PATH$SELENIUM_JAR_NAME'
                 sh 'mv $SELENIUM_BASE_PATH$SELENIUM_JAR_NAME $OLD_VERSION_PATH$SELENIUM_JAR_NAME'
             }
