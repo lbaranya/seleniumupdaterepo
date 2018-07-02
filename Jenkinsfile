@@ -41,7 +41,7 @@ pipeline {
             steps {
                 sh 'echo "testing new version"'
                 sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL > commandResult'
-                String statusCode = readFile('commandResult').trim()
+                statusCode = readFile('commandResult').trim()
                 //sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL'
                 if (statusCode == '200') {
 
