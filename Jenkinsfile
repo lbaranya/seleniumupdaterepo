@@ -15,20 +15,24 @@ pipeline {
         }
         
         stage('Remove currect version') {
+            steps {
         
-            sh 'echo "removing current version"'
-        
+                sh 'echo "removing current version"'
+            }
         }        
         
         stage('Deploy new version') {
         
-            sh 'echo "Deployinf new version"'
-        
+            steps  {
+                sh 'echo "Deployinf new version"'
+            }
         }
         
         stage('Test') {
         
-            sh 'echo "testing new version"'
+            steps {
+                sh 'echo "testing new version"'
+            }
         
         }
     
