@@ -20,6 +20,8 @@ pipeline {
                 sh 'echo "removing current version"'
                 sh 'echo "Stoping Selenium HUB"'
                 sh 'curl --output /dev/null --silent --head --fail $SELENIUM_BASE_URL$SELENIUM_SHUTDOWN_URL'
+                sh 'rm $OLD_VERSION_PATH$SELENIUM_JAR_NAME'
+                sh 'mv $SELENIUM_BASE_PATH$SELENIUM_JAR_NAME $OLD_VERSION_PATH$SELENIUM_JAR_NAME'
             }
         }        
         
@@ -46,6 +48,9 @@ pipeline {
         SELENIUM_BASE_URL = 'http://localhost:4444'
         SELENIUM_CHECK_URL = '/grid/console'
         SELENIUM_SHUTDOWN_URL = '/lifecycle-manager/LifecycleServlet?action=shutdown'
+        OLD_VERSION_PATH = '/opt/Jenkins/seleniumHub/previousVersion/'
+        SELENIUM_JAR_NAME = "selenium-server-standalone.jar"
+        SELENIUM_BASE_PATH = '/opt/Jenkins/seleniumHub/'
     }
 
 
