@@ -31,6 +31,8 @@ pipeline {
         
             steps  {
                 sh 'echo "Deployinf new version"'
+                sh 'mv $SELENIUM_BASE_PATH*.jar $SELENIUM_BASE_PATH$SELENIUM_JAR_NAME'
+                build job:$START_SELENIUM_JOB
             }
         }
         
@@ -38,6 +40,14 @@ pipeline {
         
             steps {
                 sh 'echo "testing new version"'
+                if curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL; then
+
+                    sh 'echo "Selenium Hub is Up"'
+
+                else
+                 
+                    sh 'echo "Selenium Hub is down"'
+                fi 
             }
         
         }
@@ -53,6 +63,7 @@ pipeline {
         OLD_VERSION_PATH = '/opt/Jenkins/seleniumHub/previousVersion/'
         SELENIUM_JAR_NAME = "selenium-server-standalone.jar"
         SELENIUM_BASE_PATH = '/opt/Jenkins/seleniumHub/'
+        START_SELENIUM_JOB = 'SeleniumHubStart'
     }
 
 
