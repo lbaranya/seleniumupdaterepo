@@ -44,16 +44,17 @@ pipeline {
                                 script: 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL',
                                 returnStdout: true
                             ).trim()
+                echo "este es el valor ${statusCode}"
                 //statusCode = readFile('commandResult').trim()
                 //sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL'
-                if ($statusCode == '200') {
+                //if ($statusCode == '200') {
 
-                    sh 'echo "Selenium Hub is Up"'
+                  //  sh 'echo "Selenium Hub is Up"'
 
-                } else {
+                //} else {
                  
-                    sh 'echo "Selenium Hub is down"'
-                }
+                  //  sh 'echo "Selenium Hub is down"'
+                //}
             }
         
         }
