@@ -40,11 +40,11 @@ pipeline {
         
             steps {
                 sh 'echo "testing new version"'
-                statusCode = sh (
+                STATUS_CODE = sh (
                                 script: 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL',
                                 returnStdout: true
                             ).trim()
-                echo "este es el valor ${statusCode}"
+                echo "este es el valor ${STATUS_CODE}"
                 //statusCode = readFile('commandResult').trim()
                 //sh 'curl --output /dev/null --silent --head --fail $SELENIUM_VERIFICATION_URL'
                 //if ($statusCode == '200') {
